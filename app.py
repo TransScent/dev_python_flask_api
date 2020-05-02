@@ -1,10 +1,21 @@
 from flask import Flask
+from flask import jsonify
+import config as mysql_db
 app = Flask(__name__)
+
+
 
 
 @app.route('/',methods=['GET'])
 def hello():
-    return {"name":"Jayprakash","age":25}
+    result=mysql_db.connection()
+    mycursor=result.cursor()
+    mycursor.execute("select * from customers")
+    myresult = mycursor.fetchall()
+    return jsonify({'success': 'success', 'data':myresult}) 
+
+
+   
     
 @app.route('/<name>')
 def hello_name(name):
