@@ -4,7 +4,7 @@ def connection():
                             host="localhost",
                            user ="root",
                            passwd ="root",
-                           database ="angular")
+                           database ="sakila")
     
 
     return conn
